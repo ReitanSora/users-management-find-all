@@ -15,9 +15,9 @@ USER appuser
 
 EXPOSE 8080
 
-COPY --from=build /home/gradle/src/build/libs/users-management-find-all-0.0.1-SNAPSHOT.jar ./users-management-find-all.jar
+COPY --from=build /home/gradle/src/build/libs/users-management-0.0.1-SNAPSHOT.jar ./users-management.jar
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=30s \
   CMD wget --quiet --tries=1 --spider http://localhost:8080/actuator/health || exit 1
 
-ENTRYPOINT ["java", "-Xms256m","-Xmx512m", "-jar", "/app/users-management-find-all.jar"]
+ENTRYPOINT ["java", "-Xms256m","-Xmx512m", "-jar", "/app/users-management.jar"]
